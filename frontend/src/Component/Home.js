@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../API_URL/API_URL";
+import Api from "../API_URL/Api";
+
 
 
 const reducer = (state, action) => {
@@ -57,7 +58,7 @@ const navigate=useNavigate()
   const handleRegister = async (e)=>{
     e.preventDefault();
 try {
-  const response = await axios.post(API_URL.REGISTER,
+  const response = await axios.post(Api.REGISTER,
     {
       email:state.email,
       password:state.password
@@ -74,7 +75,7 @@ try {
   const handleLogin =async (e)=>{
     e.preventDefault();
    try{
-  const result = await axios.post(API_URL.LOGIN,
+  const result = await axios.post(Api.LOGIN,
       {
         email:state.email,
         password:state.password

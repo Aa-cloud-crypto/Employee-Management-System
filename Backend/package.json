@@ -5,18 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "supervisor index.js"
+    "start": "nodemon src/index.js",
+    "dev": "nodemon src/index.js" 
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Tola-lemma/Employee-management-using-MERN-stack.git"
-  },
-  "author": "Tola Lemma",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Tola-lemma/Employee-management-using-MERN-stack/issues"
-  },
-  "homepage": "https://github.com/Tola-lemma/Employee-management-using-MERN-stack#readme",
+  
+
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
@@ -30,6 +23,7 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "@types/dateformat": "^5.0.0"
+    "@types/dateformat": "^5.0.0",
+    "nodemon":"^2.0.22"
   }
 }

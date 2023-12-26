@@ -1,7 +1,8 @@
 import { useEffect, useReducer, useState } from "react";
 import { NavBar } from "../Navigation Bar/header";
 import axios from "axios";
-import { API_URL } from "../API_URL/API_URL";
+import Api from "../API_URL/Api";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_DEPARTMENT":
@@ -33,7 +34,7 @@ export const DepartmentPage = () => {
   const [department, setDepartment] = useState([]);
   const getposts=()=>{
   //retrieve data
-  axios.get(API_URL.DEPARTMENT,{
+  axios.get(Api.DEPARTMENT,{
     headers: {
       'x-auth-token': localStorage.getItem('token')
     }
@@ -70,7 +71,7 @@ export const DepartmentPage = () => {
    }
 //    add department 
    const handleCreate=()=>{
-    axios.post(API_URL.DEPARTMENT,{DepartmentName:state.DepartmentName},
+    axios.post(Api.DEPARTMENT,{DepartmentName:state.DepartmentName},
          {
         headers: {
           'x-auth-token': localStorage.getItem('token')
@@ -86,7 +87,7 @@ const handleUpdate = (id) => {
   department.map((dep) =>
       dep.DepartmentId === id &&
       axios
-        .put(`${API_URL.DEPARTMENT}${dep._id}`, {
+        .put(`${Api.DEPARTMENT}${dep._id}`, {
           DepartmentName: state.DepartmentName,
         },{
           headers: {
@@ -110,7 +111,7 @@ const handleUpdate = (id) => {
    const handleDelete = (id) => {
     if(window.confirm('Are you Sure you want to delete ?')){
         axios
-          .delete(`${API_URL.DEPARTMENT}${id}`,{
+          .delete(`${Api.DEPARTMENT}${id}`,{
             headers: {
               'x-auth-token': localStorage.getItem('token')
             }
@@ -128,7 +129,7 @@ const handleUpdate = (id) => {
     };
   return (
     <div className="table-responsive navbarCustom">
-      <NavBar />
+      <NavBar /><p>hello</p>
       {/* button to open modal window */}
       <button 
       type="button" 

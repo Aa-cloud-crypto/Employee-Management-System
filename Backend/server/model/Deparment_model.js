@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 var department = new mongoose.Schema({
     DepartmentId: {
           type: String,

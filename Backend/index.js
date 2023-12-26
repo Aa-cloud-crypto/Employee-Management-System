@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-const connectDB = require('./server/database/connection');
+const connectDB = require('./Backend/server/database/connection');
 const path = require('path');
 var fileUpload = require('express-fileupload')
 const cors = require('cors');
@@ -18,6 +18,6 @@ app.get('/', (req, res) => {
   res.send("Welcome to Employe management! ");
 })
 //API
-app.use('/',require('./server/route/router'))
+app.use('/',require('./Backend/server/route/router'))
 app.listen(PORT,()=>console.log(`Server is running on port ${PORT} ...`));
 

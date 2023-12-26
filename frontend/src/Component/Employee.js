@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useReducer, useState } from "react";
-import { API_URL } from "../API_URL/API_URL";
+// import { API_URL } from "../API_URL/API_URL";
 import { NavBar } from "../Navigation Bar/header";
+
+import Api from "../API_URL/Api";
  const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_EMPLOYEE":
@@ -41,7 +43,7 @@ export const EmpoyeePage = () => {
   const [employee, setEmployee] = useState([]);
   const getPosts = () => {
     //fetching employee information
-    axios.get(API_URL.EMPLOYEE,
+    axios.get(Api.EMPLOYEE,
       {
         headers: {
           'x-auth-token': localStorage.getItem('token')
@@ -53,7 +55,7 @@ export const EmpoyeePage = () => {
   };
   const [department, setDepartment] = useState([]);
   const getPostDep = () => {
-    axios.get(API_URL.DEPARTMENT,
+    axios.get(Api.DEPARTMENT,
       {
         headers: {
           'x-auth-token': localStorage.getItem('token')
@@ -70,7 +72,7 @@ export const EmpoyeePage = () => {
     Department: "",
     Date_of_Joining: "",
     PhotoFileName: "",
-    photoPath: API_URL.photosPath,
+    photoPath: Api.photosPath,
   });
   const addClick = () => {
     dispatch({
@@ -107,7 +109,7 @@ export const EmpoyeePage = () => {
     formData.append('Department', state.Department);
     formData.append('Date_of_Joining', state.Date_of_Joining);
     formData.append('PhotoFileName', state.PhotoFileName);
-    axios.post(API_URL.EMPLOYEE, 
+    axios.post(Api.EMPLOYEE, 
         formData,
       {
         headers: {
@@ -136,7 +138,7 @@ export const EmpoyeePage = () => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     axios
-      .post(API_URL.PROFILEPHOTO, formData)
+      .post(Api.PROFILEPHOTO, formData)
       .then((res) => {
         // console.log(res);
         dispatch({
@@ -157,7 +159,7 @@ export const EmpoyeePage = () => {
     employee.map(
       (emp) =>
         emp.EmployeeId === id &&
-        (axios.put(`${API_URL.EMPLOYEE}${emp._id}`, {
+        (axios.put(`${Api.EMPLOYEE}${emp._id}`, {
             EmployeeName: state.EmployeeName,
             Department: state.Department,
             Date_of_Joining: state.Date_of_Joining,
@@ -181,7 +183,7 @@ export const EmpoyeePage = () => {
   };
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete Employee?")) {
-      axios.delete(`${API_URL.EMPLOYEE}${id}`,
+      axios.delete(`${Api.EMPLOYEE}${id}`,
       {
         headers: {
           'x-auth-token': localStorage.getItem('token')
